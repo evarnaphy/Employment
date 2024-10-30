@@ -2,15 +2,19 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px 
 import plotly.graph_objects as go
+import os
 
 @st.cache_data
 def load_data(url):
     df=pd.read_csv(url)
     return df
 
-df=pd.read_csv("C:/Users/User/Desktop/employment/dataset.csv")
-df=df.dropna()
-df.head()
+current_dir = os.path.dirname(os.path.abspath(__file__))
+data_path = os.path.join(current_dir, 'dataset.csv')
+df = pd.read_csv(data_path)
+print(os.listdir())
+print(f"Dataset file found at: {data_path}")
+
 year_min = df['year'].min()
 year_max = df['year'].max()
 
